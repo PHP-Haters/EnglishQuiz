@@ -5,31 +5,33 @@ public class User {
     private String email;
     private String password;
 
-    User(String email, String password) {
+    protected User(String email, String password) {
         this.email = email;
         this.password = password;
     }
 
-    void setId(int id) {
+    public void setId(int id) {
         this.id = id;
     }
-    int getId() {
+
+    public int getId() {
         return id;
     }
 
-    void setEmail(String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
-    String getEmail() {
+
+    public String getEmail() {
         return email;
     }
 
-    void setPassword(String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
-    String getPassword() {
+
+    public String getPassword() {
         return password;
     }
     
-
 }
