@@ -1,11 +1,11 @@
-package EnglishQuiz;
+package EnglishQuiz.model;
 
 public class User {
     private int id;
     private String email;
     private String password;
 
-    protected User(String email, String password) {
+    public User(String email, String password) {
         this.email = email;
         this.password = password;
     }
