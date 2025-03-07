@@ -1,9 +1,15 @@
-package EnglishQuiz.controller;
+package controller;
 
-import EnglishQuiz.model.User;
+import dao.PseudoDataBase;
+import model.User;
 
 public class Main {
     public static void main(String[] args) {
-        User newUser = new User(null, null);
+        User admin = new User(0, "admin@gmail.com", "admin");
+        PseudoDataBase.addUser(admin);
+        
+        UserController userController = new UserController();
+        userController.abrirView();
+        //todo continuar por aqui
     }
 }
