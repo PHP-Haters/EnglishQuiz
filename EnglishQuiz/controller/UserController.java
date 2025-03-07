@@ -18,7 +18,7 @@ public class UserController implements Controlller{
         userService = new UserService();
         scanner = new Scanner(System.in);
     }
-    
+
     @Override
     public void abrirView() {
         comecarLoginOuRegister();
@@ -50,7 +50,7 @@ public class UserController implements Controlller{
 
         User usuarioEncontrado = userService.verificacaoDeEmail(userEmail);
         if(usuarioEncontrado == null) {
-            loginText.mensagemDeErroGenerico();
+            loginText.mensagemDeErroGenerico("Email incorreto ou usuário inexistente");
             inputDoEmailLogin();
             scanner.close();
             return;
@@ -62,13 +62,13 @@ public class UserController implements Controlller{
 
         if(retornarPaginaLogin(senhaDoUsuario))
             return;
-        
+
         if(userService.verificacaoDeSenha(usuarioEncontrado, senhaDoUsuario)) {
             //todo Session.setUserInSession(usuarioEncontrado);
             loginText.limparConsole();
         }
         else {
-            loginText.mensagemDeErroGenerico();
+            loginText.mensagemDeErroGenerico("Senha incorreta!");
             inputDaSenhaLogin(usuarioEncontrado);
         }
         scanner.close();
@@ -90,7 +90,7 @@ public class UserController implements Controlller{
 
         boolean IsEmailCorrect = userService.confirmarSeEmailEstaCorreto(newUserEmail);
         if(!IsEmailCorrect) {
-            loginText.mensagemDeErroGenerico();
+            loginText.mensagemDeErroGenerico("O email deve conter @");
             registerEmailInput();
             scanner.close();
             return;
@@ -102,10 +102,10 @@ public class UserController implements Controlller{
     private void registerSenhaInput(User newUser) {
         loginText.senhaPrecisa();
         String newPassword = senhaInput();
-        
+
         boolean IsPasswordCorrect = userService.confirmarSeSenhaEstaCorreto(newPassword);
         if(!IsPasswordCorrect) {
-            loginText.mensagemDeErroGenerico();
+            loginText.mensagemDeErroGenerico("Senha invalida");
             registerSenhaInput(newUser);
             scanner.close();
             return;
@@ -117,7 +117,7 @@ public class UserController implements Controlller{
         comecarLoginOuRegister();
     }
 
-    
+
     private boolean retornarPaginaLogin(String newInput) {
         if(newInput.compareTo("0") == 0) {
             loginText.limparConsole();
@@ -127,15 +127,15 @@ public class UserController implements Controlller{
         }
         return false;
     }
-    
+
     protected void setarEscolhaNumerica() {
         try {
             this.escolhaDeUsuario = Integer.parseInt(scanner.nextLine());
         } catch (Exception e) {
-            loginText.mensagemDeErroGenerico();
+            loginText.mensagemDeErroGenerico("Escolha uma opção valida");
         }
     }
-    
+
     protected String emailInput() {
         loginText.pedirEmail();
         return scanner.nextLine();
