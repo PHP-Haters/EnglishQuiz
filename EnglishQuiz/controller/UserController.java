@@ -2,19 +2,23 @@ package controller;
 
 import java.util.Scanner;
 
+import model.Session;
 import model.User;
 import service.UserService;
 import view.LoginText;
+import view.Profile;
 
 public class UserController implements Controlller{
 
     LoginText loginText;
+    Profile profileScreen;
     UserService userService;
     Scanner scanner;
     int escolhaDeUsuario;
 
     protected UserController() {
         loginText = new LoginText();
+        profileScreen = new Profile();
         userService = new UserService();
         scanner = new Scanner(System.in);
     }
@@ -57,6 +61,7 @@ public class UserController implements Controlller{
         }
         inputDaSenhaLogin(usuarioEncontrado);
     }
+
     private void inputDaSenhaLogin(User usuarioEncontrado) {
         String senhaDoUsuario = senhaInput();
 
@@ -64,14 +69,58 @@ public class UserController implements Controlller{
             return;
 
         if(userService.verificacaoDeSenha(usuarioEncontrado, senhaDoUsuario)) {
-            //todo Session.setUserInSession(usuarioEncontrado);
+            Session.getInstance().setLoggedUser(usuarioEncontrado);
             loginText.limparConsole();
+            iniciarSistemaInterno();
         }
         else {
             loginText.mensagemDeErroGenerico("Senha incorreta!");
             inputDaSenhaLogin(usuarioEncontrado);
         }
         scanner.close();
+    }
+
+    private void iniciarSistemaInterno(){
+        profileScreen.telaDoUsuario();
+        setarEscolhaNumerica();
+        switch (escolhaDeUsuario) {
+            case 1:
+                listarUsuarioAtual();
+                break;
+            case 2:
+                // editarUsuario();
+                break;
+            case 3:
+                // deletarUsuario();
+                break;
+            case 4:
+                break;
+            default:
+                iniciarSistemaInterno();
+                break;
+        }
+    }
+
+    private void listarUsuarioAtual(){
+        profileScreen.limparConsole();
+        profileScreen.mostrarUsuario();
+
+        System.out.println("\nDigite zero(0) para voltar...");
+        setarEscolhaNumerica();
+        if (escolhaDeUsuario == 0) {
+            profileScreen.limparConsole();
+            iniciarSistemaInterno();
+        } else {
+            listarUsuarioAtual();
+        }
+    }
+
+    private void editarUsuario(){
+
+    }
+
+    private void deletarUsuario(){
+
     }
 
     //* Funções de registro
