@@ -89,7 +89,7 @@ public class UserController implements Controlller{
                 listarUsuarioAtual();
                 break;
             case 2:
-                // editarEmail();
+                editarEmail();
                 break;
             case 3:
                 // editarSenha();
@@ -119,11 +119,22 @@ public class UserController implements Controlller{
         }
     }
 
-    // private void editarEmail(){
-    //     User usuarioAtual = Session.getInstance().getLoggedUser();
+    private void editarEmail(){
+        User usuarioAtual = Session.getInstance().getLoggedUser();
 
+        System.out.println("Digite um novo email: ");
+        String newEmail = scanner.nextLine();
 
-    // }
+        if(newEmail.contains("@") == false) {
+            profileScreen.mensagemDeErroGenerico("Email inválido, vamos tentar de novo...");
+            editarEmail();
+        } else {
+            usuarioAtual.setEmail(newEmail);
+            PseudoDataBase.editUser(usuarioAtual);
+            profileScreen.limparConsole();
+            iniciarSistemaInterno();
+        }
+    }
 
     // private void editarSenha(){
     //     User usuarioAtual = Session.getInstance().getLoggedUser();
