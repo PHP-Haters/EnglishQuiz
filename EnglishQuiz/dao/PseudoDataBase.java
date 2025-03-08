@@ -12,8 +12,8 @@ public class PseudoDataBase {
         users.put(newUser.getId(), newUser);
     }
 
-    public static void deleteUser(User userToDelete) {
-        users.remove(userToDelete.getId());
+    public static void deleteUserById(int id) {
+        users.remove(id);
     }
 
     public static void editUser(User newUser) {

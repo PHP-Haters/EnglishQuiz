@@ -7,9 +7,10 @@ public class Profile extends Text{
     public void telaDoUsuario() {
         System.out.println("-----------------");
         System.out.println("1. Mostrar usuário");
-        System.out.println("2. Editar usuário");
-        System.out.println("3. Deletar usuário");
-        System.out.println("4. Sair do programa");
+        System.out.println("2. Editar email");
+        System.out.println("3. Editar senha");
+        System.out.println("4. Deletar usuário");
+        System.out.println("5. Sair do programa");
         System.out.println("-----------------");
     }
 

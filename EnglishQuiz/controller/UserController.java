@@ -2,6 +2,7 @@ package controller;
 
 import java.util.Scanner;
 
+import dao.PseudoDataBase;
 import model.Session;
 import model.User;
 import service.UserService;
@@ -88,12 +89,15 @@ public class UserController implements Controlller{
                 listarUsuarioAtual();
                 break;
             case 2:
-                // editarUsuario();
+                // editarEmail();
                 break;
             case 3:
-                // deletarUsuario();
+                // editarSenha();
                 break;
             case 4:
+                deletarUsuario();
+                break;
+            case 5:
                 break;
             default:
                 iniciarSistemaInterno();
@@ -115,12 +119,39 @@ public class UserController implements Controlller{
         }
     }
 
-    private void editarUsuario(){
+    // private void editarEmail(){
+    //     User usuarioAtual = Session.getInstance().getLoggedUser();
 
-    }
+
+    // }
+
+    // private void editarSenha(){
+    //     User usuarioAtual = Session.getInstance().getLoggedUser();
+
+    // }
 
     private void deletarUsuario(){
+        User usuarioAtual = Session.getInstance().getLoggedUser();
 
+        profileScreen.limparConsole();
+        System.out.println("Ao deletar o usuário atual você será deslogado do sistema.");
+        System.out.println("Tem certeza que deseja deletar o usuário permanentemente? (s/n) ");
+        String res = scanner.nextLine();
+
+
+        if(res.equals("s")){
+            PseudoDataBase.deleteUserById(usuarioAtual.getId());
+            System.out.println("Usuário deletado com sucesso");
+
+            Session.getInstance().setLoggedUser(null);
+            profileScreen.limparConsole();
+            comecarLoginOuRegister();
+        } else {
+            profileScreen.limparConsole();
+            iniciarSistemaInterno();
+        }
+
+        scanner.close();
     }
 
     //* Funções de registro
