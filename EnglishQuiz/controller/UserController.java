@@ -92,7 +92,7 @@ public class UserController implements Controlller{
                 editarEmail();
                 break;
             case 3:
-                // editarSenha();
+                editarSenha();
                 break;
             case 4:
                 deletarUsuario();
@@ -130,16 +130,30 @@ public class UserController implements Controlller{
             editarEmail();
         } else {
             usuarioAtual.setEmail(newEmail);
-            PseudoDataBase.editUser(usuarioAtual);
-            profileScreen.limparConsole();
-            iniciarSistemaInterno();
+            finalizarUpdate(usuarioAtual);
         }
     }
 
-    // private void editarSenha(){
-    //     User usuarioAtual = Session.getInstance().getLoggedUser();
+    private void editarSenha(){
+        User usuarioAtual = Session.getInstance().getLoggedUser();
 
-    // }
+        System.out.println("Digite uma nova senha: ");
+        String newPassword = scanner.nextLine();
+
+        if(newPassword.length() < 8){
+            profileScreen.mensagemDeErroGenerico("A senha deve ter mais de 8 caracteres.");
+            editarSenha();
+        } else {
+            usuarioAtual.setPassword(newPassword);
+            finalizarUpdate(usuarioAtual);
+        }
+    }
+
+    private void finalizarUpdate(User updatedUser){
+        PseudoDataBase.editUser(updatedUser);
+        profileScreen.limparConsole();
+        iniciarSistemaInterno();
+    }
 
     private void deletarUsuario(){
         User usuarioAtual = Session.getInstance().getLoggedUser();

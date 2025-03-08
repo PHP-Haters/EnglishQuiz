@@ -4,7 +4,7 @@ import dao.PseudoDataBase;
 import model.User;
 
 public class UserService {
-    
+
 
     public User verificacaoDeEmail(String email) {
         User doesUserExist = PseudoDataBase.doesUserExist(email);
