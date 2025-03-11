@@ -1,5 +1,4 @@
-package controller;
-
+import controller.UserController;
 import dao.PseudoDataBase;
 import model.User;
 
@@ -12,60 +11,3 @@ public class Main {
         userController.abrirView();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

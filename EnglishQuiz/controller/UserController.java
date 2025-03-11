@@ -17,7 +17,7 @@ public class UserController implements Controlller{
     Scanner scanner;
     int escolhaDeUsuario;
 
-    protected UserController() {
+    public UserController() {
         loginText = new LoginText();
         profileScreen = new Profile();
         userService = new UserService();

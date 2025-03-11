@@ -4,11 +4,19 @@ public class User {
     private int id;
     private String email;
     private String password;
+    private Type type;
+
+    enum Type {
+        ADMIN,
+        USER,
+        TEACHER
+    }
 
     public User(int id, String email, String password) {
         this.id = id;
         this.email = email;
         this.password = password;
+        type = Type.USER;
     }
 
     public void setId(int id) {
@@ -35,4 +43,12 @@ public class User {
         return password;
     }
     
+    public Type getType() {
+        return this.type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
 }
