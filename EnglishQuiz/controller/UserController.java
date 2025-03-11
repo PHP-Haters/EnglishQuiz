@@ -157,7 +157,6 @@ public class UserController implements Controlller{
                 break;
         }
     }
-
     private void listarUsuarioAtual(){
         profileScreen.limparConsole();
         profileScreen.mostrarUsuario();
@@ -186,7 +185,6 @@ public class UserController implements Controlller{
             finalizarUpdate(usuarioAtual);
         }
     }
-
     private void editarSenha(){
         User usuarioAtual = Session.getInstance().getLoggedUser();
 
@@ -201,7 +199,6 @@ public class UserController implements Controlller{
             finalizarUpdate(usuarioAtual);
         }
     }
-
     private void finalizarUpdate(User updatedUser){
         PseudoDataBase.editUser(updatedUser);
         profileScreen.limparConsole();
