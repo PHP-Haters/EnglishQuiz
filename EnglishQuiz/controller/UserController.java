@@ -29,7 +29,7 @@ public class UserController implements Controlller{
         comecarLoginOuRegister();
     }
 
-    //*Aqui ele vai começar o login e decidir se vai pra login ou registrar.
+    //* Aqui ele vai começar o login e decidir se vai pra login ou registrar.
     public void comecarLoginOuRegister() {
         loginText.entrandoNoSistema();
         setarEscolhaNumerica();
@@ -62,7 +62,6 @@ public class UserController implements Controlller{
         }
         inputDaSenhaLogin(usuarioEncontrado);
     }
-
     private void inputDaSenhaLogin(User usuarioEncontrado) {
         String senhaDoUsuario = senhaInput();
 
@@ -81,6 +80,60 @@ public class UserController implements Controlller{
         scanner.close();
     }
 
+
+    //* Funções de registro
+    private void registerEmailInput() {
+        String newUserEmail = emailInput();
+        if(retornarPaginaLogin(newUserEmail))
+            return;
+
+        User usuarioEncontrado = userService.verificacaoDeEmail(newUserEmail);
+        if(usuarioEncontrado != null) {
+            loginText.jaExiste();
+            registerEmailInput();
+            scanner.close();
+            return;
+        }
+
+        boolean IsEmailCorrect = userService.confirmarSeEmailEstaCorreto(newUserEmail);
+        if(!IsEmailCorrect) {
+            loginText.mensagemDeErroGenerico("O email deve conter @");
+            registerEmailInput();
+            scanner.close();
+            return;
+        }
+        User newUser = new User(0, newUserEmail, "");
+        registerSenhaInput(newUser);
+    }
+    private void registerSenhaInput(User newUser) {
+        loginText.senhaPrecisa();
+        String newPassword = senhaInput();
+
+        boolean IsPasswordCorrect = userService.confirmarSeSenhaEstaCorreto(newPassword);
+        if(!IsPasswordCorrect) {
+            loginText.mensagemDeErroGenerico("Senha invalida");
+            registerSenhaInput(newUser);
+            scanner.close();
+            return;
+        }
+
+        newUser.setPassword(newPassword);
+
+        userService.completarRegistro(newUser);
+        comecarLoginOuRegister();
+    }
+    private boolean retornarPaginaLogin(String newInput) {
+        if(newInput.compareTo("0") == 0) {
+            loginText.limparConsole();
+            comecarLoginOuRegister();
+            scanner.close();
+            return true;
+        }
+        return false;
+    }
+
+
+    //*Funções do sistema interno
     private void iniciarSistemaInterno(){
         profileScreen.telaDoUsuario();
         setarEscolhaNumerica();
@@ -178,61 +231,9 @@ public class UserController implements Controlller{
 
         scanner.close();
     }
+    
 
-    //* Funções de registro
-    private void registerEmailInput() {
-        String newUserEmail = emailInput();
-        if(retornarPaginaLogin(newUserEmail))
-            return;
-
-        User usuarioEncontrado = userService.verificacaoDeEmail(newUserEmail);
-        if(usuarioEncontrado != null) {
-            loginText.jaExiste();
-            registerEmailInput();
-            scanner.close();
-            return;
-        }
-
-        boolean IsEmailCorrect = userService.confirmarSeEmailEstaCorreto(newUserEmail);
-        if(!IsEmailCorrect) {
-            loginText.mensagemDeErroGenerico("O email deve conter @");
-            registerEmailInput();
-            scanner.close();
-            return;
-        }
-        User newUser = new User(0, newUserEmail, "");
-        registerSenhaInput(newUser);
-    }
-
-    private void registerSenhaInput(User newUser) {
-        loginText.senhaPrecisa();
-        String newPassword = senhaInput();
-
-        boolean IsPasswordCorrect = userService.confirmarSeSenhaEstaCorreto(newPassword);
-        if(!IsPasswordCorrect) {
-            loginText.mensagemDeErroGenerico("Senha invalida");
-            registerSenhaInput(newUser);
-            scanner.close();
-            return;
-        }
-
-        newUser.setPassword(newPassword);
-
-        userService.completarRegistro(newUser);
-        comecarLoginOuRegister();
-    }
-
-
-    private boolean retornarPaginaLogin(String newInput) {
-        if(newInput.compareTo("0") == 0) {
-            loginText.limparConsole();
-            comecarLoginOuRegister();
-            scanner.close();
-            return true;
-        }
-        return false;
-    }
-
+    //* funções pequenas de suporte
     protected void setarEscolhaNumerica() {
         try {
             this.escolhaDeUsuario = Integer.parseInt(scanner.nextLine());
@@ -240,7 +241,6 @@ public class UserController implements Controlller{
             loginText.mensagemDeErroGenerico("Escolha uma opção valida");
         }
     }
-
     protected String emailInput() {
         loginText.pedirEmail();
         return scanner.nextLine();
