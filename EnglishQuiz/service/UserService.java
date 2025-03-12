@@ -5,7 +5,7 @@ import model.User;
 
 public class UserService {
 
-
+    //* Verificação para saber se está certo ou não
     public User verificacaoDeEmail(String email) {
         User doesUserExist = PseudoDataBase.doesUserExist(email);
         if(doesUserExist == null && email.contains("@") == false)
@@ -13,7 +13,6 @@ public class UserService {
 
         return doesUserExist;
     }
-
     public boolean verificacaoDeSenha(User userToCompare, String password) {
         if(userToCompare.getPassword().compareTo(password) == 0)
             return true;
@@ -21,6 +20,7 @@ public class UserService {
         return false;
     }
 
+    //* Verificação para a criação
     public boolean confirmarSeEmailEstaCorreto(String newEmail) {
         if(newEmail.contains("@"))
             return true;
@@ -34,6 +34,7 @@ public class UserService {
             return false;
     }
 
+    //* Completa o registramento
     public void completarRegistro(User newUser) {
 
         newUser.setId(PseudoDataBase.getLastId()+1);

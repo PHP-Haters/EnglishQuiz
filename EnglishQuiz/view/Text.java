@@ -1,6 +1,8 @@
 package view;
 
 public abstract class Text {
+
+    //* Funções genéricas relacionadas a printar texto
     public void limparConsole() {
         System.out.print("\033[H\033[2J");
     }

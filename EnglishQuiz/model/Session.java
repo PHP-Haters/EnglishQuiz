@@ -1,9 +1,10 @@
 package model;
 
 public class Session{
-    private static Session instance;
+    private static Session instance; //garante que existe só uma instancia da Sessão
     private User loggedUser;
 
+    //* Permite pegar a instancia atual da Sessão
     public static Session getInstance(){
         if (instance == null) {
             instance = new Session();

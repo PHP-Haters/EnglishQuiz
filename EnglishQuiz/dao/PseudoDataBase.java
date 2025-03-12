@@ -8,14 +8,13 @@ public class PseudoDataBase {
 
     public static HashMap<Integer, User> users = new HashMap<Integer, User>();
 
+    //*Funções relacionadas a tratar com os usuários
     public static void addUser(User newUser) {
         users.put(newUser.getId(), newUser);
     }
-
     public static void deleteUserById(int id) {
         users.remove(id);
     }
-
     public static void editUser(User newUser) {
         users.replace(newUser.getId(), newUser);
     }
@@ -33,6 +32,7 @@ public class PseudoDataBase {
         return null;
     }
 
+    //* Permite pegar o maior ID de usuário
     public static int getLastId() {
 
         int biggestId = 0;

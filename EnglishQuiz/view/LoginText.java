@@ -1,6 +1,8 @@
 package view;
 
 public class LoginText extends Text{
+
+    //* Texto relacionado ao login.
     public void entrandoNoSistema() {
         System.out.println("-----------------");
         System.out.println("1. Login"); 
@@ -14,6 +16,7 @@ public class LoginText extends Text{
     }
     public void pedirSenha() {
         System.out.println("-----------------");
+        System.out.println("Escreva seu email. Para voltar, digite 0.");
         System.out.println("Senha:");
     }
     public void senhaPrecisa() {
