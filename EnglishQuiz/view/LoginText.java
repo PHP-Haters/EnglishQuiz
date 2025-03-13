@@ -16,12 +16,12 @@ public class LoginText extends Text{
     }
     public void pedirSenha() {
         System.out.println("-----------------");
-        System.out.println("Escreva seu email. Para voltar, digite 0.");
+        System.out.println("Escreva sua senha. Para voltar, digite 0.");
         System.out.println("Senha:");
     }
     public void senhaPrecisa() {
         System.out.println("-----------------");
-        System.out.println("A senha precisa de pelo menos 8 carateres.");
+        System.out.println("A senha precisa de pelo menos 8 carateres e 2 números.");
     }
     
     public void jaExiste() {
