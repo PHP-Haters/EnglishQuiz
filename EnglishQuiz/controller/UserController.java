@@ -9,7 +9,7 @@ import service.UserService;
 import view.LoginText;
 import view.Profile;
 
-public class UserController implements Controlller{
+public class UserController implements Controller{
 
     LoginText loginText;
     Profile profileScreen;
