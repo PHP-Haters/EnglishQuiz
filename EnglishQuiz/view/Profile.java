@@ -1,7 +1,7 @@
 package view;
 
-import model.Session;
 import model.User;
+import server.Session;
 
 public class Profile extends Text{
     public void telaDoUsuario() {

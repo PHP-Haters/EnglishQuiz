@@ -2,8 +2,8 @@ package controller;
 
 import java.util.Scanner;
 
+import server.Session;
 import dao.PseudoDataBase;
-import model.Session;
 import model.User;
 import service.UserService;
 import view.LoginText;

@@ -1,4 +1,7 @@
-package model;
+package server;
+
+
+import model.User;
 
 public class Session{
     private static Session instance; //garante que existe só uma instancia da Sessão
