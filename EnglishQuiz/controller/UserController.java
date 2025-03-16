@@ -40,6 +40,8 @@ public class UserController implements Controller{
             case 2:
                 registerEmailInput();
                 break;
+            case 3:
+                break;
             default:
                 comecarLoginOuRegister();
                 break;
@@ -151,6 +153,7 @@ public class UserController implements Controller{
                 deletarUsuario();
                 break;
             case 5:
+                logout();
                 break;
             default:
                 iniciarSistemaInterno();
@@ -256,17 +259,32 @@ public class UserController implements Controller{
             PseudoDataBase.deleteUserById(usuarioAtual.getId());
             System.out.println("Usuário deletado com sucesso");
 
-            Session.getInstance().setLoggedUser(null);
-            profileScreen.limparConsole();
-            comecarLoginOuRegister();
+            finalizarSessao();
         } else {
             profileScreen.limparConsole();
             iniciarSistemaInterno();
         }
-
-        scanner.close();
     }
 
+    private void logout(){
+        profileScreen.limparConsole();
+
+        System.out.println("Deseja realmente fazer logout? (s/n)");
+        String res = scanner.nextLine();
+
+        if(res.equals("s")){
+            finalizarSessao();
+        } else {
+            profileScreen.limparConsole();
+            iniciarSistemaInterno();
+        }
+    }
+
+    private void finalizarSessao(){
+        Session.getInstance().setLoggedUser(null);
+        profileScreen.limparConsole();
+        comecarLoginOuRegister();
+    }
 
     //* funções pequenas de suporte
     protected void setarEscolhaNumerica() {

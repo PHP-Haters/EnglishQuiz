@@ -5,8 +5,9 @@ public class LoginText extends Text{
     //* Texto relacionado ao login.
     public void entrandoNoSistema() {
         System.out.println("-----------------");
-        System.out.println("1. Login"); 
+        System.out.println("1. Login");
         System.out.println("2. Registrar");
+        System.out.println("3. Fechar o sistema");
         System.out.println("-----------------");
     }
     public void pedirEmail() {
@@ -23,7 +24,7 @@ public class LoginText extends Text{
         System.out.println("-----------------");
         System.out.println("A senha precisa de pelo menos 8 carateres e 2 números.");
     }
-    
+
     public void jaExiste() {
         System.out.println("-----------------");
         System.out.println("Usuário já existe.");
