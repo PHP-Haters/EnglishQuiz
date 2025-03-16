@@ -62,6 +62,7 @@ public class UserController implements Controller{
         }
         inputDaSenhaLogin(usuarioEncontrado);
     }
+
     private void inputDaSenhaLogin(User usuarioEncontrado) {
         String senhaDoUsuario = senhaInput();
 
@@ -79,7 +80,6 @@ public class UserController implements Controller{
         }
         scanner.close();
     }
-
 
     //* Funções de registro
     private void registerEmailInput() {
@@ -122,6 +122,7 @@ public class UserController implements Controller{
         userService.completarRegistro(newUser);
         comecarLoginOuRegister();
     }
+
     private boolean retornarPaginaLogin(String newInput) {
         if(newInput.compareTo("0") == 0) {
             loginText.limparConsole();
@@ -131,7 +132,6 @@ public class UserController implements Controller{
         }
         return false;
     }
-
 
     //*Funções do sistema interno
     private void iniciarSistemaInterno(){
@@ -157,6 +157,7 @@ public class UserController implements Controller{
                 break;
         }
     }
+
     private void listarUsuarioAtual(){
         profileScreen.limparConsole();
         profileScreen.mostrarUsuario();
@@ -171,8 +172,30 @@ public class UserController implements Controller{
         }
     }
 
-    private void editarEmail(){
+    private boolean confirmarSenha(){
+        String senhaAtual = Session.getInstance().getLoggedUser().getPassword();
+
+        System.out.println("Confirme sua senha para prosseguir: ");
+        String senhaDigitada = scanner.nextLine();
+
+        if(senhaDigitada.equals(senhaAtual)){
+            return true;
+        } else {
+            System.out.println("Senha incorreta!");
+            return false;
+        }
+    }
+
+    private boolean editarEmail(){
         User usuarioAtual = Session.getInstance().getLoggedUser();
+
+        profileScreen.limparConsole();
+
+        boolean senhaConfirmada = confirmarSenha();
+        if(senhaConfirmada ==  false){
+            iniciarSistemaInterno();
+            return false;
+        }
 
         System.out.println("Digite um novo email: ");
         String newEmail = scanner.nextLine();
@@ -184,21 +207,36 @@ public class UserController implements Controller{
             usuarioAtual.setEmail(newEmail);
             finalizarUpdate(usuarioAtual);
         }
+
+        return true;
     }
-    private void editarSenha(){
+
+    private boolean editarSenha(){
         User usuarioAtual = Session.getInstance().getLoggedUser();
+
+
+        profileScreen.limparConsole();
+
+        boolean senhaConfirmada = confirmarSenha();
+        if(senhaConfirmada ==  false){
+            iniciarSistemaInterno();
+            return false;
+        }
 
         System.out.println("Digite uma nova senha: ");
         String newPassword = scanner.nextLine();
 
         if(newPassword.length() < 8){
-            profileScreen.mensagemDeErroGenerico("A senha deve ter mais de 8 caracteres.");
+            profileScreen.mensagemDeErroGenerico("A senha deve ter mais de 8 caracteres e ao menos 2 numeros.");
             editarSenha();
         } else {
             usuarioAtual.setPassword(newPassword);
             finalizarUpdate(usuarioAtual);
         }
+
+        return true;
     }
+
     private void finalizarUpdate(User updatedUser){
         PseudoDataBase.editUser(updatedUser);
         profileScreen.limparConsole();
@@ -228,7 +266,7 @@ public class UserController implements Controller{
 
         scanner.close();
     }
-    
+
 
     //* funções pequenas de suporte
     protected void setarEscolhaNumerica() {
