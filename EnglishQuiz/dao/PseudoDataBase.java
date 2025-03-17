@@ -49,6 +49,6 @@ public class PseudoDataBase {
 
     //*Funções relacionadas as questões do level
     public static void questoes(Question newQuestion){
-        
+        question.put("I ____ Brazilian and i live in Foz do iguaçu", newQuestion);
     }
 }
