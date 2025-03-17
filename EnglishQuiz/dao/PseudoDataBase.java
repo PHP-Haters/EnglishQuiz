@@ -2,6 +2,7 @@ package dao;
 import java.util.HashMap;
 
 import model.User;
+import model.Question;
 
 public class PseudoDataBase {
 
@@ -42,5 +43,12 @@ public class PseudoDataBase {
             }
         }
         return biggestId;
+    }
+
+    public static HashMap<String,Question> question = new HashMap<String, Question>();
+
+    //*Funções relacionadas as questões do level
+    public static void questoes(Question newQuestion){
+        
     }
 }
