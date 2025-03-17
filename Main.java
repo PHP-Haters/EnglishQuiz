@@ -2,6 +2,7 @@ import controller.MainController;
 import controller.UserController;
 import dao.PseudoDataBase;
 import model.User;
+import server.Session;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,7 +12,10 @@ public class Main {
         UserController userController = new UserController();
         userController.abrirView();
 
-        MainController mainController = new MainController();
-        mainController.abrirView();
+        if(Session.getInstance().getLoggedUser() != null) {
+            MainController mainController = new MainController();
+            mainController.abrirView();
+        }
+        
     }
 }

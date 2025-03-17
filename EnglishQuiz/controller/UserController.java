@@ -8,6 +8,7 @@ import model.User;
 import service.UserService;
 import view.LoginText;
 import view.Profile;
+import view.Text;
 
 public class UserController implements Controller{
 
@@ -41,7 +42,7 @@ public class UserController implements Controller{
                 registerEmailInput();
                 break;
             case 3:
-                break;
+                return;
             default:
                 comecarLoginOuRegister();
                 break;
@@ -59,7 +60,7 @@ public class UserController implements Controller{
         if(usuarioEncontrado == null) {
             loginText.mensagemDeErroGenerico("Email incorreto ou usuário inexistente");
             inputDoEmailLogin();
-            scanner.close();
+            
             return;
         }
         inputDaSenhaLogin(usuarioEncontrado);
@@ -79,7 +80,7 @@ public class UserController implements Controller{
             loginText.mensagemDeErroGenerico("Senha incorreta!");
             inputDaSenhaLogin(usuarioEncontrado);
         }
-        scanner.close();
+        
     }
 
     //* Funções de registro
@@ -92,7 +93,7 @@ public class UserController implements Controller{
         if(usuarioEncontrado != null) {
             loginText.jaExiste();
             registerEmailInput();
-            scanner.close();
+            
             return;
         }
 
@@ -100,7 +101,7 @@ public class UserController implements Controller{
         if(!IsEmailCorrect) {
             loginText.mensagemDeErroGenerico("O email deve conter @");
             registerEmailInput();
-            scanner.close();
+            
             return;
         }
         User newUser = new User(0, newUserEmail, "");
@@ -114,7 +115,7 @@ public class UserController implements Controller{
         if(!IsPasswordCorrect) {
             loginText.mensagemDeErroGenerico("Senha invalida");
             registerSenhaInput(newUser);
-            scanner.close();
+            
             return;
         }
 
@@ -128,14 +129,14 @@ public class UserController implements Controller{
         if(newInput.compareTo("0") == 0) {
             loginText.limparConsole();
             comecarLoginOuRegister();
-            scanner.close();
+            
             return true;
         }
         return false;
     }
 
     //*Funções do sistema interno
-    private void iniciarSistemaInterno(){
+    protected void iniciarSistemaInterno() {
         profileScreen.telaDoUsuario();
         setarEscolhaNumerica();
         switch (escolhaDeUsuario) {
@@ -154,6 +155,10 @@ public class UserController implements Controller{
             case 5:
                 logout();
                 break;
+            case 0:
+                profileScreen.limparConsole();
+                MainController mainController = new MainController();
+                mainController.abrirView();
             default:
                 iniciarSistemaInterno();
                 break;
@@ -265,7 +270,7 @@ public class UserController implements Controller{
         }
     }
 
-    private void logout(){
+    protected void logout(){
         profileScreen.limparConsole();
 
         System.out.println("Deseja realmente fazer logout? (s/n)");

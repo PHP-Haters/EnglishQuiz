@@ -11,9 +11,7 @@ public class Profile extends Text{
         System.out.println("3. Editar senha");
         System.out.println("4. Deletar usuário");
         System.out.println("5. Deslogar");
-        System.out.println("-----------------");
-        System.out.println("\n\n");
-        System.out.println("6. Trilhas");
+        System.out.println("0. Voltar");
         System.out.println("-----------------");
     }
 
