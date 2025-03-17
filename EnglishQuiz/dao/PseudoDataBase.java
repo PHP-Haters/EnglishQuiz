@@ -45,6 +45,12 @@ public class PseudoDataBase {
         return biggestId;
     }
 
+
+
+
+
+
+    
     public static HashMap<String,Question> question = new HashMap<String, Question>();
 
     //*Funções relacionadas as questões do level

@@ -74,7 +74,6 @@ public class UserController implements Controller{
         if(userService.verificacaoDeSenha(usuarioEncontrado, senhaDoUsuario)) {
             Session.getInstance().setLoggedUser(usuarioEncontrado);
             loginText.limparConsole();
-            iniciarSistemaInterno();
         }
         else {
             loginText.mensagemDeErroGenerico("Senha incorreta!");

@@ -1,6 +1,6 @@
 package view;
 
-public abstract class Text {
+public class Text {
 
     //* Funções genéricas relacionadas a printar texto
     public void limparConsole() {
@@ -19,5 +19,16 @@ public abstract class Text {
 
         System.out.println("-----------------");
         System.out.println("\n");
+    }
+
+    public void mainMenu() {
+        System.err.println("1. Informações do Usuário");
+        System.err.println("2. Trilha");
+        System.err.println("0. Log out");
+    }
+    public void mainMenuAdmin() {
+        //System.err.println("1. Informações do Usuário");
+        //System.err.println("2. Trilha");
+        //System.err.println("0. Log out");
     }
 }

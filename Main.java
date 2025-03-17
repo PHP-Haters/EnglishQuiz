@@ -1,3 +1,4 @@
+import controller.MainController;
 import controller.UserController;
 import dao.PseudoDataBase;
 import model.User;
@@ -9,5 +10,8 @@ public class Main {
 
         UserController userController = new UserController();
         userController.abrirView();
+
+        MainController mainController = new MainController();
+        mainController.abrirView();
     }
 }
