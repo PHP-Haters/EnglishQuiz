@@ -1,8 +1,6 @@
 package controller;
 import java.util.Scanner;
 import view.Text;
-import view.TrilhaText;
-import controller.UserController;
 import model.User;
 
 public class MainController implements Controller {
@@ -20,7 +18,7 @@ public class MainController implements Controller {
         int escolha = Integer.parseInt(scanner.nextLine());
         
         UserController userController = new UserController();
-        TrilhaText trilhaText = new TrilhaText();
+        LevelController levelController = new LevelController();
         Text text = new Text();
 
         switch (escolha) {
@@ -30,7 +28,7 @@ public class MainController implements Controller {
                 break;
             case 2:
                 text.limparConsole();
-                trilhaText.entrandoNaTrilha();
+                levelController.entrandoNaTrilha();
                 break;
             case 0:
                 text.limparConsole();
