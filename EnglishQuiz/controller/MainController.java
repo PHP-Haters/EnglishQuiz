@@ -27,7 +27,7 @@ public class MainController implements Controller {
                 break;
             case 2:
                 text.limparConsole();
-                levelController.entrandoNaTrilha();
+                levelController.abrirView();
                 break;
             case 0:
                 text.limparConsole();

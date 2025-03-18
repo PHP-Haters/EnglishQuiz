@@ -158,6 +158,7 @@ public class UserController implements Controller{
                 profileScreen.limparConsole();
                 MainController mainController = new MainController();
                 mainController.abrirView();
+                break;
             default:
                 iniciarSistemaInterno();
                 break;

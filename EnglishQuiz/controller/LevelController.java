@@ -9,7 +9,8 @@ public class LevelController implements Controller {
     Text text = new Text();
     LevelText levelText = new LevelText();
 
-    public void entrandoNaTrilha() {
+    @Override
+    public void abrirView() {
         text.limparConsole();
         levelText.entrandoNaTrilha();
 
@@ -29,17 +30,12 @@ public class LevelController implements Controller {
                 text.limparConsole();
                 MainController mainController = new MainController();
                 mainController.abrirView();
+                break;
             default:
-                entrandoNaTrilha();
+                abrirView();
                 break;
         }
     }
 
     private void iniciarLevel(){}
-    
-    @Override
-    public void abrirView() {
-        throw new UnsupportedOperationException("Unimplemented method 'abrirView'");
-    }
-
 }
