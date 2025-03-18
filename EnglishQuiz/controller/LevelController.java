@@ -39,8 +39,7 @@ public class LevelController implements Controller {
     
     @Override
     public void abrirView() {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'abrirView'");
     }
-    
+
 }
