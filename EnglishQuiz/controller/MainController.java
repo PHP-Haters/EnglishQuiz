@@ -1,7 +1,6 @@
 package controller;
 import java.util.Scanner;
 import view.Text;
-import model.User;
 
 public class MainController implements Controller {
     private Text text;

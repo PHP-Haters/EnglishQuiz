@@ -8,7 +8,6 @@ import model.User;
 import service.UserService;
 import view.LoginText;
 import view.Profile;
-import view.Text;
 
 public class UserController implements Controller{
 
