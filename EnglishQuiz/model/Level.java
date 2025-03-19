@@ -8,7 +8,7 @@ public class Level {
     public enum Types {
         INICIANTE,
         INTERMEDIARIO,
-        AVANÇADO
+        AVANCADO
     }
 
     public Level(int id, String nomeLevel, Types types) {

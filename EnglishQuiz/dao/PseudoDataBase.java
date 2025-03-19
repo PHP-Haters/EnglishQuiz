@@ -3,6 +3,7 @@ import java.util.HashMap;
 
 import model.User;
 import model.Question;
+import model.Level;
 
 public class PseudoDataBase {
 
@@ -46,15 +47,25 @@ public class PseudoDataBase {
     }
 
 
-
-
-
-
+    public static HashMap<Integer, Level> level = new HashMap<Integer, Level>();
     
+    //Funções relacionadas aos níveis da trilha
+    public static void levels() {
+        Level levelUm = new Level(0, "Primeiro nível", Level.Types.INICIANTE);
+        Level levelDois = new Level(1, "Segundo nível", Level.Types.INTERMEDIARIO); 
+        Level levelTres = new Level(2, "Terceiro nível", Level.Types.AVANCADO);
+
+        level.put(0, levelUm);
+        level.put(1, levelDois);
+        level.put(2, levelTres);
+    }
+
+
     public static HashMap<String,Question> question = new HashMap<String, Question>();
 
-    //*Funções relacionadas as questões do level
+    //Funções relacionadas as questões do level
     public static void questoes(Question newQuestion){
         question.put("I ____ Brazilian and i live in Foz do iguaçu", newQuestion);
     }
+    
 }
